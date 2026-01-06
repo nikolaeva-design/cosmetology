@@ -43,11 +43,11 @@ const testimonials = [
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[360px] h-[260px] sm:h-[270px] lg:h-[280px] bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-sm flex flex-col">
+    <div className="flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[360px] h-[260px] sm:h-[270px] lg:h-[280px] bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-sm flex flex-col" style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}>
       {/* Stars */}
       <div className="flex gap-1 mb-4 pb-4 lg:mb-5 lg:pb-5">
         {[...Array(5)].map((_, i) => (
-          <iconify-icon key={i} icon="solar:star-bold" width="14" height="14" style={{ color: '#FBBF24' }}></iconify-icon>
+          <span key={i} className="text-[#FBBF24] text-sm">★</span>
         ))}
       </div>
       
