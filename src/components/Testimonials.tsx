@@ -43,22 +43,22 @@ const testimonials = [
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="flex-shrink-0 w-[360px] h-[280px] bg-white rounded-2xl p-7 shadow-sm flex flex-col">
+    <div className="flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[360px] h-[260px] sm:h-[270px] lg:h-[280px] bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-sm flex flex-col">
       {/* Stars */}
-      <div className="flex gap-1 mb-5 pb-5">
+      <div className="flex gap-1 mb-4 pb-4 lg:mb-5 lg:pb-5">
         {[...Array(5)].map((_, i) => (
           <iconify-icon key={i} icon="solar:star-bold" width="14" height="14" style={{ color: '#FBBF24' }}></iconify-icon>
         ))}
       </div>
       
       {/* Content */}
-      <p className="text-[var(--color-text)] text-[15px] leading-[1.7] flex-1">
+      <p className="text-[var(--color-text)] text-[14px] sm:text-[15px] leading-[1.6] sm:leading-[1.7] flex-1">
         &ldquo;{testimonial.content}&rdquo;
       </p>
       
       {/* Author */}
-      <div className="flex items-center gap-3 mt-auto pt-5">
-        <div className="w-10 h-10 rounded-full bg-[var(--color-bg-dark)] flex items-center justify-center flex-shrink-0">
+      <div className="flex items-center gap-3 mt-auto pt-4 lg:pt-5">
+        <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-[var(--color-bg-dark)] flex items-center justify-center flex-shrink-0">
           <span className="text-white font-medium text-xs">{testimonial.initials}</span>
         </div>
         <div>
@@ -97,8 +97,8 @@ export default function Testimonials() {
       </div>
 
       {/* Scrolling Row 1 - Left to Right */}
-      <div className="relative mb-6 pb-5">
-        <div className="flex gap-6 animate-scroll-left">
+      <div className="relative mb-4 sm:mb-6 pb-4 sm:pb-5">
+        <div className="flex gap-4 sm:gap-5 lg:gap-6 animate-scroll-left">
           {[...testimonials, ...testimonials].map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}
@@ -107,7 +107,7 @@ export default function Testimonials() {
 
       {/* Scrolling Row 2 - Right to Left */}
       <div className="relative">
-        <div className="flex gap-6 animate-scroll-right">
+        <div className="flex gap-4 sm:gap-5 lg:gap-6 animate-scroll-right">
           {[...testimonials.slice(3), ...testimonials.slice(0, 3), ...testimonials.slice(3), ...testimonials.slice(0, 3)].map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}

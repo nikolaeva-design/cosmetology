@@ -237,13 +237,32 @@ iconify-icon {
 }
 
 .animate-scroll-left {
-  animation: scroll-left 40s linear infinite;
+  animation: scroll-left 20s linear infinite;
   will-change: transform;
 }
 
 .animate-scroll-right {
-  animation: scroll-right 40s linear infinite;
+  animation: scroll-right 20s linear infinite;
   will-change: transform;
+}
+
+/* Slower animation on larger screens where there's more content to scroll */
+@media (min-width: 768px) {
+  .animate-scroll-left {
+    animation-duration: 30s;
+  }
+  .animate-scroll-right {
+    animation-duration: 30s;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animate-scroll-left {
+    animation-duration: 40s;
+  }
+  .animate-scroll-right {
+    animation-duration: 40s;
+  }
 }
 
 /* ===== Page Animations ===== */
