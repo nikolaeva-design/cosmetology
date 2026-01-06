@@ -25,6 +25,7 @@ function ComparisonSlider() {
   }, [updateSliderPosition]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    e.preventDefault();
     setIsDragging(true);
     updateSliderPosition(e.touches[0].clientX);
   }, [updateSliderPosition]);
@@ -37,6 +38,7 @@ function ComparisonSlider() {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!isDragging) return;
+      e.preventDefault();
       updateSliderPosition(e.touches[0].clientX);
     };
 
@@ -47,8 +49,9 @@ function ComparisonSlider() {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleEnd);
-      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
       document.addEventListener('touchend', handleEnd);
+      document.addEventListener('touchcancel', handleEnd);
     }
 
     return () => {
@@ -56,6 +59,7 @@ function ComparisonSlider() {
       document.removeEventListener('mouseup', handleEnd);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleEnd);
+      document.removeEventListener('touchcancel', handleEnd);
     };
   }, [isDragging, updateSliderPosition]);
 
@@ -74,6 +78,7 @@ function ComparisonSlider() {
     <div 
       ref={containerRef}
       className="relative w-full aspect-[4/3] lg:aspect-[16/9] overflow-hidden cursor-ew-resize select-none"
+      style={{ touchAction: 'none' }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
       role="slider"
